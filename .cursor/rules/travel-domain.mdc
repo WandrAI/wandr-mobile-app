@@ -1,0 +1,145 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Travel Domain Guidelines
+
+## Travel App Context
+
+Wandr is a travel guide app focused on:
+- **Real-time AI assistance** for travel decisions
+- **Hyper-localized recommendations** based on location
+- **Social collaboration** for group travel planning
+- **Mobile-first experience** for on-the-go usage
+
+## Travel-Specific UI Patterns
+
+### Travel Navigation Tabs
+Current app structure with travel-focused tabs:
+- **Home**: Travel dashboard and quick actions
+- **AI Assistant**: Conversational travel help (Phase 2)
+- **Social**: Group travel collaboration (Phase 3)  
+- **Profile**: User travel preferences and stats
+
+### Travel Data Types
+When working with travel data, expect these common patterns:
+```typescript
+interface Destination {
+  name: string;
+  country: string;
+  coordinates: { lat: number; lng: number };
+  rating: number;
+  priceLevel: 1 | 2 | 3 | 4;
+}
+
+interface TripActivity {
+  type: 'restaurant' | 'attraction' | 'hotel' | 'transport';
+  duration?: string;
+  cost?: number;
+  rating: number;
+}
+```
+
+### Travel Color Semantics
+Use travel-specific theme colors:
+```typescript
+const theme = useTravelTheme();
+// theme.booking (green) - For booking actions
+// theme.exploration (blue) - For discovery features  
+// theme.social (purple) - For social features
+// theme.transport (orange) - For transportation
+// theme.accommodation (teal) - For hotels/stays
+```
+
+## Mobile Travel UX Considerations
+
+### One-Handed Operation
+- Design for thumb-friendly interaction zones
+- Place primary actions within easy reach
+- Use large touch targets (minimum 44px)
+
+### Offline Scenarios
+- Consider poor connectivity while traveling
+- Design graceful loading states
+- Cache essential travel information
+
+### Real-World Usage
+- Account for outdoor screen visibility
+- Design for quick information access
+- Consider travel-time constraints
+
+### Cultural Sensitivity
+- Support multiple languages and currencies
+- Respect local customs in imagery and content
+- Use inclusive, culturally-aware design patterns
+
+## Travel Feature Patterns
+
+### Location-Based Features
+```typescript
+// Always handle location permissions gracefully
+const [location, setLocation] = useState<Location | null>(null);
+const [permissionStatus, setPermissionStatus] = useState<'granted' | 'denied' | 'pending'>('pending');
+```
+
+### Travel Booking Flows
+- Use progressive disclosure for complex booking forms
+- Provide clear pricing breakdown
+- Include confirmation and receipt patterns
+- Handle booking state management
+
+### Social Travel Features (Future)
+- Group trip planning and collaboration
+- Shared itinerary management  
+- Friend recommendations and reviews
+- Travel photo sharing
+
+### AI Assistant Integration (Future)
+- Conversational travel assistance
+- Context-aware recommendations
+- Real-time travel problem solving
+- Personalized travel insights
+
+## Travel-Specific Component Patterns
+
+### Travel Card Layout
+```typescript
+<Card elevate size="$4" margin="$2">
+  <Card.Header>
+    <YStack space="$2">
+      <StyledText type="subtitle">{destination.name}</StyledText>
+      <XStack justifyContent="space-between" alignItems="center">
+        <StyledText variant="muted">{destination.rating} ★</StyledText>
+        <StyledText color="$green10">${destination.price}</StyledText>
+      </XStack>
+    </YStack>
+  </Card.Header>
+</Card>
+```
+
+### Empty States for Travel
+Design empty states that encourage travel action:
+- "No trips yet" → "Plan your first adventure"
+- "No saved places" → "Discover amazing destinations"
+- Include travel-themed emojis and encouraging copy
+
+### Travel Status Indicators
+- Trip status: Planning, Active, Completed
+- Booking status: Pending, Confirmed, Cancelled
+- Activity status: Available, Booked, Waitlist
+
+## Icon Usage
+Use travel-appropriate SF Symbols mapped in `IconSymbol`:
+- `airplane` - Flight-related features
+- `map.fill` - Navigation and location
+- `star.fill` - Ratings and favorites
+- `heart.fill` - Saved/loved destinations
+- `location.fill` - Current location features
+
+## Reference Files
+@docs/project/design-principles.md
+@docs/project/roadmap.md
+@components/atoms/IconSymbol/IconSymbol.tsx
+@hooks/useTravelTheme.ts
+@app/(tabs)/_layout.tsx
