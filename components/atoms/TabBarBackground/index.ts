@@ -1,0 +1,1 @@
+export { TabBarBackground } from './TabBarBackground'; 

@@ -39,4 +39,8 @@ yarn-error.*
 # IDE
 .vscode/
 
-app-example
+# jest
+coverage/
+
+# ui libraries
+.tamagui/

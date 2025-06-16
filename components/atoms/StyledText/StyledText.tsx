@@ -5,6 +5,7 @@ export const StyledText = styled(Text, {
   name: 'StyledText',
   color: '$color',
   fontFamily: '$body',
+  testID: 'styled-text',
 
   variants: {
     type: {

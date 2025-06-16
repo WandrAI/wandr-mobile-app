@@ -50,7 +50,6 @@ Thumbs.db
 # IDE files (but keep our custom configurations)
 .vscode/
 .idea/
-.tamagui/
 
 # Keep all documentation - don't ignore these!
 !docs/
