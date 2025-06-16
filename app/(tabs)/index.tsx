@@ -1,9 +1,12 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { ScrollView } from 'tamagui';
+import { useRouter } from 'expo-router';
 
 import { StyledText, StyledView } from '@/components';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
       <StyledView style={styles.content}>
@@ -21,25 +24,31 @@ export default function HomeScreen() {
             <TouchableOpacity style={styles.actionCard} disabled>
               <StyledText style={styles.actionIcon}>🗺️</StyledText>
               <StyledText type="defaultSemiBold" style={styles.actionTitle}>Plan Trip</StyledText>
-              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
+              <StyledText style={styles.actionSubtitle}>Phase 2</StyledText>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.actionCard} disabled>
+            <TouchableOpacity 
+              style={[styles.actionCard, styles.activeCard]} 
+              onPress={() => router.push('/ai')}
+            >
               <StyledText style={styles.actionIcon}>🤖</StyledText>
               <StyledText type="defaultSemiBold" style={styles.actionTitle}>AI Assistant</StyledText>
-              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
+              <StyledText style={styles.actionSubtitle}>Explore Preview</StyledText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard} disabled>
               <StyledText style={styles.actionIcon}>📍</StyledText>
               <StyledText type="defaultSemiBold" style={styles.actionTitle}>Explore Nearby</StyledText>
-              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
+              <StyledText style={styles.actionSubtitle}>Phase 2</StyledText>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.actionCard} disabled>
+            <TouchableOpacity 
+              style={[styles.actionCard, styles.activeCard]} 
+              onPress={() => router.push('/social')}
+            >
               <StyledText style={styles.actionIcon}>👥</StyledText>
               <StyledText type="defaultSemiBold" style={styles.actionTitle}>Group Trips</StyledText>
-              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
+              <StyledText style={styles.actionSubtitle}>Explore Preview</StyledText>
             </TouchableOpacity>
           </StyledView>
         </StyledView>
@@ -101,6 +110,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minHeight: 100,
     opacity: 0.6, // Disabled state
+  },
+  activeCard: {
+    opacity: 1, // Active state
+    backgroundColor: 'rgba(0, 122, 255, 0.15)',
   },
   actionIcon: {
     fontSize: 24,
