@@ -1,8 +1,8 @@
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, StyleSheet } from 'react-native';
 
-import { ThemedText } from '@/components';
+import { StyledText, StyledButton, StyledView } from '@/components';
 
 export default function WelcomeScreen() {
     const router = useRouter();
@@ -20,30 +20,40 @@ export default function WelcomeScreen() {
             <StatusBar style="light" />
 
             {/* Spacer to push content to bottom */}
-            <View style={styles.spacer} />
+            <StyledView style={styles.spacer} />
 
             {/* Bottom content with gradient overlay */}
-            <View style={styles.bottomContent}>
+            <StyledView style={styles.bottomContent}>
                 {/* Gradient overlay for text readability */}
-                <View style={styles.gradientOverlay} />
+                <StyledView style={styles.gradientOverlay} />
 
-                <View style={styles.contentContainer}>
-                    {/* Main message */}
-                    <View style={styles.messageSection}>
-                        <ThemedText style={styles.welcomeTitle}>
+                <StyledView style={styles.contentContainer}>
+                    {/* Main message - Now using styled components */}
+                    <StyledView style={styles.messageSection}>
+                        <StyledText type="title" style={styles.welcomeTitle}>
                             Welcome to Wandr
-                        </ThemedText>
-                        <ThemedText style={styles.subtitle}>
+                        </StyledText>
+                        <StyledText style={styles.subtitle}>
                             Your AI-powered travel companion for discovering authentic experiences
-                        </ThemedText>
-                    </View>
+                        </StyledText>
+                    </StyledView>
 
-                    {/* Continue button */}
-                    <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-                        <ThemedText style={styles.continueButtonText}>Get Started</ThemedText>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                    {/* Continue button - Using StyledButton with proper Tamagui styling */}
+                    <StyledButton 
+                        onPress={handleContinue}
+                        chromeless
+                        style={styles.continueButton}
+                        pressStyle={{
+                            opacity: 0.8,
+                            scale: 0.98
+                        }}
+                    >
+                        <StyledText style={styles.continueButtonText}>
+                            Get Started
+                        </StyledText>
+                    </StyledButton>
+                </StyledView>
+            </StyledView>
         </ImageBackground>
     );
 }
@@ -107,7 +117,7 @@ const styles = StyleSheet.create({
     },
     continueButton: {
         backgroundColor: 'rgba(255, 255, 255, 0.95)', // Semi-transparent white
-        paddingVertical: 18,
+        paddingVertical: 8,
         paddingHorizontal: 48,
         borderRadius: 16,
         width: '100%',
@@ -127,5 +137,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
         letterSpacing: 0.5,
+        lineHeight: 24, // Explicit line height to prevent clipping
+        textAlignVertical: 'center', // Center text vertically
     },
 }); 

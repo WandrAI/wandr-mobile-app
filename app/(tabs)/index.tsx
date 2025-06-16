@@ -1,60 +1,61 @@
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'tamagui';
 
-import { ThemedText, ThemedView } from '@/components';
+import { StyledText, StyledView } from '@/components';
 
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container} contentInsetAdjustmentBehavior="automatic">
-      <ThemedView style={styles.content}>
+      <StyledView style={styles.content}>
         {/* Header Section */}
-        <View style={styles.headerSection}>
-          <ThemedText type="title" style={styles.greeting}>Good Morning!</ThemedText>
-          <ThemedText style={styles.subtitle}>Ready for your next adventure?</ThemedText>
-        </View>
+        <StyledView style={styles.headerSection}>
+          <StyledText type="title" style={styles.greeting}>Good Morning!</StyledText>
+          <StyledText style={styles.subtitle}>Ready for your next adventure?</StyledText>
+        </StyledView>
 
         {/* Quick Actions - Future features */}
-        <View style={styles.quickActionsSection}>
-          <ThemedText type="subtitle" style={styles.sectionTitle}>Quick Actions</ThemedText>
+        <StyledView style={styles.quickActionsSection}>
+          <StyledText type="subtitle" style={styles.sectionTitle}>Quick Actions</StyledText>
 
-          <View style={styles.actionsGrid}>
+          <StyledView style={styles.actionsGrid}>
             <TouchableOpacity style={styles.actionCard} disabled>
-              <ThemedText style={styles.actionIcon}>🗺️</ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.actionTitle}>Plan Trip</ThemedText>
-              <ThemedText style={styles.actionSubtitle}>Coming Soon</ThemedText>
+              <StyledText style={styles.actionIcon}>🗺️</StyledText>
+              <StyledText type="defaultSemiBold" style={styles.actionTitle}>Plan Trip</StyledText>
+              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard} disabled>
-              <ThemedText style={styles.actionIcon}>🤖</ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.actionTitle}>AI Assistant</ThemedText>
-              <ThemedText style={styles.actionSubtitle}>Coming Soon</ThemedText>
+              <StyledText style={styles.actionIcon}>🤖</StyledText>
+              <StyledText type="defaultSemiBold" style={styles.actionTitle}>AI Assistant</StyledText>
+              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard} disabled>
-              <ThemedText style={styles.actionIcon}>📍</ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.actionTitle}>Explore Nearby</ThemedText>
-              <ThemedText style={styles.actionSubtitle}>Coming Soon</ThemedText>
+              <StyledText style={styles.actionIcon}>📍</StyledText>
+              <StyledText type="defaultSemiBold" style={styles.actionTitle}>Explore Nearby</StyledText>
+              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionCard} disabled>
-              <ThemedText style={styles.actionIcon}>👥</ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.actionTitle}>Group Trips</ThemedText>
-              <ThemedText style={styles.actionSubtitle}>Coming Soon</ThemedText>
+              <StyledText style={styles.actionIcon}>👥</StyledText>
+              <StyledText type="defaultSemiBold" style={styles.actionTitle}>Group Trips</StyledText>
+              <StyledText style={styles.actionSubtitle}>Coming Soon</StyledText>
             </TouchableOpacity>
-          </View>
-        </View>
+          </StyledView>
+        </StyledView>
 
         {/* Recent Activity Placeholder */}
-        <View style={styles.recentSection}>
-          <ThemedText type="subtitle" style={styles.sectionTitle}>Recent Activity</ThemedText>
-          <View style={styles.emptyState}>
-            <ThemedText style={styles.emptyIcon}>✈️</ThemedText>
-            <ThemedText style={styles.emptyTitle}>No trips yet</ThemedText>
-            <ThemedText style={styles.emptyDescription}>
+        <StyledView style={styles.recentSection}>
+          <StyledText type="subtitle" style={styles.sectionTitle}>Recent Activity</StyledText>
+          <StyledView style={styles.emptyState}>
+            <StyledText style={styles.emptyIcon}>✈️</StyledText>
+            <StyledText style={styles.emptyTitle}>No trips yet</StyledText>
+            <StyledText style={styles.emptyDescription}>
               Your travel history and saved places will appear here
-            </ThemedText>
-          </View>
-        </View>
-      </ThemedView>
+            </StyledText>
+          </StyledView>
+        </StyledView>
+      </StyledView>
     </ScrollView>
   );
 }
@@ -104,6 +105,8 @@ const styles = StyleSheet.create({
   actionIcon: {
     fontSize: 24,
     marginBottom: 8,
+    lineHeight: 30, // Explicit line height to prevent top clipping
+    textAlignVertical: 'center', // Center icon vertically
   },
   actionTitle: {
     fontSize: 14,
@@ -127,6 +130,8 @@ const styles = StyleSheet.create({
   emptyIcon: {
     fontSize: 32,
     marginBottom: 12,
+    lineHeight: 40, // Explicit line height to prevent top clipping
+    textAlignVertical: 'center', // Center icon vertically
   },
   emptyTitle: {
     fontSize: 16,

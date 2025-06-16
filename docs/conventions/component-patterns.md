@@ -209,6 +209,7 @@ const itemsPerRow = isTablet ? 3 : 2;
 
 ## 🔄 Migration Patterns
 
+### Atomic Design Migration
 When moving existing components to atomic design:
 
 1. **Identify the atomic level** based on complexity
@@ -217,6 +218,72 @@ When moving existing components to atomic design:
 4. **Update imports** throughout the codebase
 5. **Add proper TypeScript interfaces**
 6. **Test functionality** remains intact
+
+### Unified Tamagui System
+The project uses Tamagui as the primary UI library with React Native as fallback only for complex components. See [Tamagui Implementation Guide](./tamagui-implementation-guide.md) for detailed usage instructions.
+
+**Component Architecture:**
+- **Primary**: Tamagui-based styled components (StyledText, StyledView, StyledButton)
+- **Fallback**: React Native only for complex interactions (ImageBackground, StatusBar, gesture handlers)
+- **Unified**: Single import source with library-agnostic naming for future flexibility
+
+**Component mapping:**
+```typescript
+// ✅ Primary Tamagui components
+View → StyledView
+Text → StyledText  
+ScrollView → ScrollView (from 'tamagui')
+TouchableOpacity → StyledButton (when used as buttons)
+Button → StyledButton
+
+// ✅ React Native fallback (complex components only)
+ImageBackground, StatusBar, PanGestureHandler, complex animations
+
+// Unified imports - library-agnostic naming
+import { StyledText, StyledView, StyledButton } from '@/components';
+
+// Advanced Tamagui layout components
+import { ScrollView, XStack, YStack } from 'tamagui';
+
+// Theme and responsive hooks
+import { useTravelTheme, useResponsive } from '@/hooks';
+```
+
+**Best Practices:**
+```typescript
+// ✅ Standard component usage
+<StyledView padding="$4" backgroundColor="$background">
+  <StyledText type="title" color="$color">Travel Destination</StyledText>
+  <StyledButton theme="blue" onPress={handleBooking}>
+    Book Now
+  </StyledButton>
+</StyledView>
+
+// ✅ Custom styling with chromeless
+<StyledButton 
+  chromeless 
+  style={styles.customButton}
+  pressStyle={{ opacity: 0.8, scale: 0.98 }}
+>
+  <StyledText style={styles.buttonText}>Custom Button</StyledText>
+</StyledButton>
+
+// ✅ Responsive design with hooks
+const { isTablet, cardWidth } = useResponsive();
+const theme = useTravelTheme();
+
+<StyledView width={cardWidth} backgroundColor={theme.card}>
+  <StyledText color={theme.text}>Content</StyledText>
+</StyledView>
+```
+
+**Future UI Library Migration:**
+The styled component naming approach allows easy migration to different UI libraries:
+- `StyledText` can wrap any text component library
+- `StyledView` can wrap any view component library  
+- `StyledButton` can wrap any button component library
+
+This design enables changing the underlying UI library without updating component usage throughout the app.
 
 ## 🧪 Testing Patterns
 

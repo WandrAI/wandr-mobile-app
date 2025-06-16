@@ -49,8 +49,8 @@ Thumbs.db
 
 # IDE files (but keep our custom configurations)
 .vscode/
-!.vscode/settings.json
 .idea/
+.tamagui/
 
 # Keep all documentation - don't ignore these!
 !docs/
