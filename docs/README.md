@@ -16,8 +16,8 @@ This documentation is designed to help developers (including AI assistants) unde
 
 ### 📐 Development Conventions
 - **Location**: `/docs/conventions/`
-- **Purpose**: Coding standards, naming conventions, and patterns
-- **For AI**: Follow consistent patterns when generating code
+- **Purpose**: Coding standards, naming conventions, Git workflow, and patterns
+- **For AI**: Follow consistent patterns when generating code and commits
 
 ### 🎯 Project Context
 - **Location**: `/docs/project/`
@@ -31,7 +31,8 @@ When working with this codebase:
 1. **Read the ADRs first** - Understand architectural decisions
 2. **Review component conventions** - Follow atomic design patterns
 3. **Check naming conventions** - Use consistent naming
-4. **Understand the travel domain** - Consider user personas and travel needs
+4. **Follow Git conventions** - Use conventional commits with travel context
+5. **Understand the travel domain** - Consider user personas and travel needs
 
 ## 📁 Project Structure
 
