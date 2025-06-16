@@ -1,50 +1,117 @@
-# Welcome to your Expo app 👋
+# Wandr - Your AI-Powered Travel Companion 🌍
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Wandr is a next-generation travel guide app that combines real-time AI assistance with hyper-localized recommendations and seamless group collaboration tools. Built with React Native and Expo Router for a beautiful, cross-platform experience.
 
-## Get started
+## ✨ Key Features
 
-1. Install dependencies
+### 🤖 Real-Time Conversational Assistance
+- 24/7 AI travel companion for on-the-spot help
+- Live updates and context awareness for travel changes
+- Instant alternative suggestions for delays or closures
+- Personal guide in your pocket that adapts to real-time situations
 
+### 🎯 Hyper-Localized Recommendations
+- Rich local insights tailored to your travel profile
+- Beyond typical tourist highlights - discover neighborhood gems
+- Personalized for foodies, outdoor enthusiasts, history buffs, etc.
+- Up-to-date reviews, crowd levels, and seasonal activities
+- European destination expertise with cultural authenticity
+
+### 👥 Seamless Group Planning & Collaboration
+- Multi-user itinerary editing and real-time collaboration
+- Invite friends into trip plans with voting and commenting
+- AI-mediated group decisions and compromises
+- Expense tracking and splitting for group trips
+- Calendar synchronization across all group members
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI
+- iOS Simulator (for iOS development) or Android Studio (for Android development)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd rn-guide-app
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
+   # or
+   yarn install
    ```
 
-2. Start the app
-
+3. **Start the development server**
    ```bash
-   npx expo start
+   npm start
+   # or
+   yarn start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run on your preferred platform**
+   ```bash
+   # iOS
+   npm run ios
+   
+   # Android
+   npm run android
+   
+   # Web
+   npm run web
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🏗️ Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Framework**: React Native with Expo
+- **UI System**: Custom themed components with planned Tamagui integration
+- **Language**: TypeScript for type safety
+- **State Management**: (To be implemented)
+- **Navigation**: (To be implemented)
+- **AI Integration**: (To be implemented)
 
-## Get a fresh project
+## 📚 Documentation
 
-When you're ready, run:
+For detailed information about the project, please refer to our comprehensive documentation:
 
+- **[Project Documentation](docs/README.md)** - Architecture, conventions, and development guides
+- **[Features Roadmap](docs/project/roadmap.md)** - Planned features and development phases
+- **[Design Principles](docs/project/design-principles.md)** - UI/UX guidelines and philosophy
+- **[Architecture Decisions](docs/adr/)** - Technical decisions and their rationale
+- **[Component Guidelines](docs/conventions/component-patterns.md)** - Component development patterns
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our contributing guidelines for more information.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🛠️ Development
+
+### Quick Commands
 ```bash
-npm run reset-project
+npm start          # Start Expo development server
+npm run ios        # Run on iOS simulator
+npm run android    # Run on Android emulator
+npm run web        # Run on web browser
+npm run lint       # Run ESLint
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Development Guidelines
+- **TypeScript**: Use TypeScript for all new code
+- **Components**: Follow atomic design principles (see [Component Guidelines](docs/conventions/component-patterns.md))
+- **Documentation**: Update relevant docs when making architectural changes
+- **Testing**: Implement proper error handling and write descriptive commit messages
 
-## Learn more
+For detailed development information, see our [Project Documentation](docs/README.md).
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Wandr** - Making travel planning and execution seamless, social, and smart. 🌟 

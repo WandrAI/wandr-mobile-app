@@ -1,0 +1,36 @@
+---
+description: Documentation navigation and usage patterns for the Wandr travel app
+globs: docs/**/*
+alwaysApply: true
+---
+---
+description: Documentation navigation and usage patterns for the Wandr travel app
+globs: docs/**/*
+alwaysApply: true
+---
+
+# Documentation Navigation Rule
+
+## When AI Should Reference Documentation
+
+### Always Reference First
+- **Architecture decisions**: Check `/docs/adr/` before suggesting architectural changes
+- **Component creation**: Reference `/docs/conventions/component-patterns.md` for structure
+- **Design decisions**: Use `/docs/project/design-principles.md` for travel UX guidance
+
+### Documentation Hierarchy
+1. **ADRs take precedence** - These explain WHY decisions were made
+2. **Component patterns** - These explain HOW to implement
+3. **Design principles** - These explain WHAT makes good travel UX
+
+## File Cross-References
+- When suggesting components, reference: @docs/conventions/component-patterns.md
+- When making architecture changes, reference: @docs/adr/
+- When designing travel features, reference: @docs/project/design-principles.md
+- When planning features, reference: @docs/project/roadmap.md
+
+## AI Behavior
+- Always explain which documentation informed your suggestion
+- If documentation is missing for a topic, suggest creating it
+- Maintain consistency with documented patterns
+- Propose ADRs for new architectural decisions

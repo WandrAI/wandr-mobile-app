@@ -1,0 +1,59 @@
+---
+description: Wandr Travel App - AI-powered travel companion with atomic design components and comprehensive documentation
+globs: **/*
+alwaysApply: true
+---
+
+# Wandr Travel App Project Rules
+
+## Project Overview
+Wandr is a next-generation travel guide app that combines real-time AI assistance with hyper-localized recommendations and seamless group collaboration tools.
+
+## Architecture
+- **Framework**: React Native + Expo Router (file-based routing)
+- **Component System**: Atomic Design (atoms → molecules → organisms → templates)
+- **Language**: TypeScript with strict typing
+- **Styling**: Custom themed components (ThemedText, ThemedView) with planned Tamagui migration
+- **State**: React Context + Hooks pattern
+
+## Documentation Structure
+The project follows comprehensive documentation in `/docs/`:
+
+- **Architecture Decision Records**: `/docs/adr/` - Why decisions were made
+- **Component Patterns**: `/docs/conventions/component-patterns.md` - How to build components
+- **Design Principles**: `/docs/project/design-principles.md` - Travel UX guidelines
+- **Project Roadmap**: `/docs/project/roadmap.md` - Feature development plan
+
+## Key Development Patterns
+
+### Components (Atomic Design)
+- `components/atoms/` - Basic UI elements (buttons, inputs, text)
+- `components/molecules/` - Simple combinations (search bars, cards)
+- `components/organisms/` - Complex UI sections (trip planners, maps)
+- `components/templates/` - Page-level layouts
+
+### Travel Domain Context
+- Focus on mobile-first travel scenarios
+- Consider offline usage patterns
+- Prioritize accessibility for various lighting conditions
+- Design for social collaboration features
+- Support multiple languages and cultures
+
+### Code Standards
+- Use functional components with TypeScript interfaces
+- Implement proper error boundaries for travel data
+- Follow React Native best practices for performance
+- Include proper loading states for network requests
+- Handle location permissions gracefully
+
+## AI Assistant Instructions
+When working on this project:
+1. **Always reference documentation** in `/docs/` for context
+2. **Follow atomic design** when creating new components
+3. **Consider travel UX** implications in all suggestions
+4. **Maintain component hierarchy** and proper exports
+5. **Include proper TypeScript typing** for all travel-related data
+6. **Reference ADRs** when making architectural decisions
+
+@docs/adr/001-atomic-design-component-structure.md
+@docs/conventions/component-patterns.md
