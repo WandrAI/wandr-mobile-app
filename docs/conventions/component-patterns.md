@@ -382,6 +382,9 @@ This design enables changing the underlying UI library without updating componen
 
 ## 🎨 Testing Patterns
 
+### Testing Philosophy
+The Wandr app follows a **unit-testing first** approach, prioritizing comprehensive component testing over complex E2E automation. This approach provides excellent value for early-stage development while maintaining high code quality and fast feedback loops.
+
 ### Testing Setup
 The project uses Jest + React Native Testing Library for unit and integration testing:
 

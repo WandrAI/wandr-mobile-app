@@ -15,6 +15,8 @@ Create a next-generation travel guide app that combines real-time AI assistance 
 - [x] Atomic design component structure implementation
 - [x] Project documentation and AI-friendly conventions
 - [x] Tamagui UI library integration
+- [x] Unit testing setup (Jest + React Native Testing Library)
+- [x] Component testing patterns and co-location
 - [ ] Basic home screen design
 - [ ] Navigation structure
 - [ ] Basic component library (atoms, molecules)
@@ -84,6 +86,9 @@ Create a next-generation travel guide app that combines real-time AI assistance 
   - Booking platform integration
   - Transportation APIs
   - Accommodation services
+- [ ] E2E testing implementation (when app matures)
+  - Maestro setup for critical travel flows
+  - Automated testing for key user journeys
 
 **Target Completion**: Q2 2026
 
