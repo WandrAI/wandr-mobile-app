@@ -538,6 +538,6 @@ Tamagui components include accessibility props by default:
 
 ---
 
-**Last Updated**: December 2024
+**Last Updated**: June 2025
 
 For more detailed information, refer to the [official Tamagui documentation](https://tamagui.dev/docs) and our [ADR-002: Tamagui UI Library Integration](../adr/002-tamagui-ui-library-integration.md). 

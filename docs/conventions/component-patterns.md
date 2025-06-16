@@ -83,6 +83,101 @@ interface AppLayoutProps {
 }
 ```
 
+## 🏗️ Component Structure
+
+### Consistent Folder Pattern
+All components follow the same folder structure for consistency and predictability:
+
+```
+components/
+├── atoms/
+│   ├── StyledText/
+│   │   ├── StyledText.tsx
+│   │   ├── StyledText.test.tsx
+│   │   └── index.ts
+│   ├── StyledButton/
+│   │   ├── StyledButton.tsx
+│   │   ├── StyledButton.test.tsx
+│   │   └── index.ts
+│   ├── IconSymbol/
+│   │   ├── IconSymbol.tsx
+│   │   ├── IconSymbol.ios.tsx      # Platform-specific variant
+│   │   ├── IconSymbol.test.tsx     # Tests when added
+│   │   └── index.ts
+│   └── index.ts                    # Exports all atoms
+├── molecules/
+│   ├── TravelCard/                 # Future component example
+│   │   ├── TravelCard.tsx
+│   │   ├── TravelCard.test.tsx
+│   │   ├── PriceSection.tsx        # Sub-component
+│   │   └── index.ts
+│   └── index.ts
+├── organisms/
+│   ├── TripPlanner/                # Future complex component
+│   │   ├── TripPlanner.tsx
+│   │   ├── TripPlanner.test.tsx
+│   │   ├── components/             # Internal sub-components
+│   │   │   ├── DatePicker.tsx
+│   │   │   └── DestinationList.tsx
+│   │   └── index.ts
+│   └── index.ts
+└── index.ts                        # Main export point
+```
+
+### Component Folder Benefits
+
+**1. Consistency**: Every component follows the same pattern
+- New developers always know where to find component files
+- No decision fatigue about file organization
+- Scalable pattern for any complexity level
+
+**2. Encapsulation**: Each component is fully self-contained
+- Component, tests, and exports in one place
+- Easy to move or refactor entire components
+- Clear ownership boundaries
+
+**3. Discoverability**: Easy navigation and understanding
+- IDE folder structures are predictable
+- Test files are immediately visible
+- Supporting files (future stories, docs) have a clear home
+
+**4. Travel App Alignment**: Supports domain-specific components
+- Booking components can include sub-components naturally
+- Travel-specific test data stays with travel components
+- Feature development is more organized
+
+### File Naming Conventions
+
+**Component Files:**
+- `ComponentName.tsx` - Main component file
+- `ComponentName.test.tsx` - Component tests  
+- `ComponentName.ios.tsx` - iOS-specific variant (when needed)
+- `ComponentName.android.tsx` - Android-specific variant (when needed)
+
+**Folder Structure:**
+- `ComponentName/` - PascalCase folder name matching component
+- `index.ts` - Clean export interface
+- `components/` - Sub-components folder (for complex components)
+
+### Index File Pattern
+
+Each component folder includes an `index.ts` file for clean imports:
+
+```typescript
+// components/atoms/StyledText/index.ts
+export { StyledText } from './StyledText';
+export type { StyledTextProps } from './StyledText';
+```
+
+This enables clean imports throughout the app:
+```typescript
+// Clean import from any level
+import { StyledText } from '@/components/atoms/StyledText';
+
+// Or from main atoms index
+import { StyledText } from '@/components/atoms';
+```
+
 ## 🏗️ Component Creation Guidelines
 
 ### 1. Naming Conventions
@@ -285,23 +380,102 @@ The styled component naming approach allows easy migration to different UI libra
 
 This design enables changing the underlying UI library without updating component usage throughout the app.
 
-## 🧪 Testing Patterns
+## 🎨 Testing Patterns
+
+### Testing Setup
+The project uses Jest + React Native Testing Library for unit and integration testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Test Structure
+Tests are co-located with components using the consistent folder pattern:
+
+```
+components/atoms/
+├── StyledText/
+│   ├── StyledText.tsx
+│   ├── StyledText.test.tsx      ← Test file alongside component
+│   └── index.ts
+├── StyledButton/
+│   ├── StyledButton.tsx
+│   ├── StyledButton.test.tsx    ← Test file alongside component
+│   └── index.ts
+```
+
+### Test Utilities
+Use the custom render function from `__tests__/test-utils.tsx` to wrap components with necessary providers:
 
 ```typescript
-// Component test structure
-describe('ComponentName', () => {
-  it('renders correctly', () => {
-    // Render test
-  });
-  
-  it('handles user interactions', () => {
-    // Interaction test
-  });
-  
-  it('applies theme correctly', () => {
-    // Theme test
+import { render, screen } from '../../../__tests__/test-utils';
+import { StyledText } from './StyledText';
+
+describe('StyledText', () => {
+  it('renders text content correctly', () => {
+    const testText = 'Welcome to Wandr';
+    render(<StyledText>{testText}</StyledText>);
+    
+    expect(screen.getByText(testText)).toBeTruthy();
   });
 });
+```
+
+### Testing Best Practices
+
+1. **Test Component Contract**: Focus on props, variants, and user interactions
+2. **Use Travel Context**: Include travel-specific examples in test data
+3. **Test Accessibility**: Verify accessibility labels and behavior
+4. **Test Variants**: Cover all type and variant combinations
+5. **Test Error States**: Include tests for edge cases and error handling
+6. **Co-locate Tests**: Keep tests in the same folder as components
+
+### Example Component Test
+```typescript
+describe('StyledText', () => {
+  // Basic rendering
+  it('renders text content correctly', () => {
+    render(<StyledText>Welcome to Wandr</StyledText>);
+    expect(screen.getByText('Welcome to Wandr')).toBeTruthy();
+  });
+
+  // Variant testing
+  it('applies title type variant', () => {
+    render(<StyledText type="title">Travel Guide</StyledText>);
+    expect(screen.getByText('Travel Guide')).toBeTruthy();
+  });
+
+  // Accessibility testing
+  it('renders with accessibility label', () => {
+    render(
+      <StyledText accessibilityLabel="Trip rating">
+        ★ 4.8 (127 reviews)
+      </StyledText>
+    );
+    expect(screen.getByLabelText('Trip rating')).toBeTruthy();
+  });
+});
+```
+
+### Test File Conventions
+
+**Naming**: `ComponentName.test.tsx` alongside `ComponentName.tsx`
+**Location**: Same folder as the component being tested
+**Imports**: Use relative imports from the same folder
+
+```typescript
+// ✅ Good - relative import from same folder
+import { StyledText } from './StyledText';
+
+// ❌ Avoid - complex relative paths
+import { StyledText } from '../StyledText/StyledText';
 ```
 
 ## 📚 Best Practices
