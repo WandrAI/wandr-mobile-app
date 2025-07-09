@@ -4,3 +4,6 @@ export * from './molecules';
 export * from './organisms';
 export * from './templates';
 
+// Utility components
+export { AuthGuard } from './AuthGuard';
+

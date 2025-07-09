@@ -8,6 +8,7 @@ import { TamaguiProvider } from 'tamagui';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { tamaguiConfig } from '../tamagui.config';
+import { QueryProvider } from '@/providers/QueryProvider';
 
 // Only import CSS on web platform
 if (Platform.OS === 'web') {
@@ -27,14 +28,17 @@ export default function RootLayout() {
 
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme!}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="welcome" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <QueryProvider>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="welcome" options={{ headerShown: false }} />
+            <Stack.Screen name="login" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </QueryProvider>
     </TamaguiProvider>
   );
 }

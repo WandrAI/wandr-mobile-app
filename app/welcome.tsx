@@ -8,7 +8,7 @@ export default function WelcomeScreen() {
     const router = useRouter();
 
     const handleContinue = () => {
-        router.replace('/(tabs)');
+        router.replace('/login');
     };
 
     return (
