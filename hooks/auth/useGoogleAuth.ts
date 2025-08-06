@@ -1,0 +1,1 @@
+Consider using TypeScript enums for error codes and OAuth response types instead of string literals throughout this file. This will improve code safety and readability, and help prevent typos. Also, refactor the error message mapping in getGoogleAuthErrorMessage to use a lookup map rather than chained ifs for maintainability.
