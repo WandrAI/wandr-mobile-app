@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { ScrollView, YStack, XStack } from 'tamagui';
 
-import { StyledText, StyledButton, StyledView, StyledInput } from '@/components';
+import { StyledText, StyledButton, StyledView, StyledInput, GoogleSignInButton } from '@/components';
 import { useLogin } from '@/hooks/auth';
 import { LoginRequest } from '@/services/api/auth';
 
@@ -67,6 +67,29 @@ export default function LoginScreen() {
             <StyledText style={styles.subtitle}>
               Sign in to continue your travel journey
             </StyledText>
+          </YStack>
+
+          {/* Google Sign-In */}
+          <YStack gap="$4" width="100%">
+            <GoogleSignInButton 
+              variant="outline"
+              size="large"
+              onSuccess={() => {
+                console.log('Google sign-in successful');
+              }}
+              onError={(error) => {
+                console.error('Google sign-in error:', error);
+              }}
+            />
+            
+            {/* Divider */}
+            <XStack alignItems="center" gap="$4" marginVertical="$2">
+              <StyledView flex={1} height={1} backgroundColor="$borderColor" />
+              <StyledText fontSize="$3" color="$color11">
+                or continue with email
+              </StyledText>
+              <StyledView flex={1} height={1} backgroundColor="$borderColor" />
+            </XStack>
           </YStack>
 
           {/* Login Form */}
