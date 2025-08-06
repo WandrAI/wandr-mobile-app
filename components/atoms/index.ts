@@ -8,3 +8,6 @@ export * from './StyledInput';
 export * from './IconSymbol';
 export * from './TabBarBackground';
 
+// Authentication components
+export * from './GoogleSignInButton';
+
