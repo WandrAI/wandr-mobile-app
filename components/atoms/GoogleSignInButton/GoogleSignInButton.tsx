@@ -1,14 +1,16 @@
 import React from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button, XStack, Text, Spinner } from 'tamagui';
 import { useGoogleAuth, getGoogleAuthErrorMessage } from '../../../hooks/auth';
+import { notificationService } from '../../../services/NotificationService';
+import { getButtonConfig, ButtonSize, ButtonVariant } from '../../../utils/ButtonConfigFactory';
 
 interface GoogleSignInButtonProps {
   onSuccess?: () => void;
   onError?: (error: string) => void;
   disabled?: boolean;
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'outline' | 'filled';
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 }
 
 export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
@@ -26,11 +28,7 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
       const errorMessage = getGoogleAuthErrorMessage(error);
       
       // Show alert to user
-      Alert.alert(
-        'Google Sign-In Failed',
-        errorMessage,
-        [{ text: 'OK' }]
-      );
+      notificationService.showAuthError(errorMessage);
       
       // Call custom error handler
       onError?.(errorMessage);
@@ -39,49 +37,22 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
 
   const handlePress = () => {
     if (!isReady) {
-      Alert.alert(
-        'Not Ready',
-        'Google Sign-In is not ready yet. Please try again in a moment.',
-        [{ text: 'OK' }]
-      );
+      notificationService.showNotReady('Google Sign-In');
       return;
     }
 
     signInWithGoogle();
   };
 
-  const getButtonSize = () => {
-    switch (size) {
-      case 'small':
-        return '$4';
-      case 'medium':
-        return '$5';
-      case 'large':
-      default:
-        return '$6';
-    }
-  };
-
-  const getFontSize = () => {
-    switch (size) {
-      case 'small':
-        return '$3';
-      case 'medium':
-        return '$4';
-      case 'large':
-      default:
-        return '$5';
-    }
-  };
-
+  const config = getButtonConfig(size, variant);
   const isDisabled = disabled || isLoading || !isReady;
 
   return (
     <Button
-      size={getButtonSize()}
-      backgroundColor={variant === 'filled' ? '$blue10' : 'transparent'}
+      size={config.size}
+      backgroundColor={config.backgroundColor}
       borderColor="$borderColor"
-      borderWidth={variant === 'outline' ? 1 : 0}
+      borderWidth={config.borderWidth}
       onPress={handlePress}
       disabled={isDisabled}
       opacity={isDisabled ? 0.6 : 1}
@@ -94,22 +65,22 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
     >
       <XStack alignItems="center" gap="$3">
         {isLoading ? (
-          <Spinner size="small" color={variant === 'filled' ? 'white' : '$blue10'} />
+          <Spinner size="small" color={config.iconColor} />
         ) : (
           // Google "G" logo placeholder - in production, you'd use the actual Google logo
           <Text 
             fontSize="$6" 
             fontWeight="bold" 
-            color={variant === 'filled' ? 'white' : '$blue10'}
+            color={config.iconColor}
           >
             G
           </Text>
         )}
         
         <Text
-          fontSize={getFontSize()}
+          fontSize={config.fontSize}
           fontWeight="600"
-          color={variant === 'filled' ? 'white' : '$color12'}
+          color={config.textColor}
         >
           {isLoading ? 'Signing In...' : 'Continue with Google'}
         </Text>

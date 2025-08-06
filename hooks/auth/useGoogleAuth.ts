@@ -12,6 +12,7 @@ import {
   OAUTH_ADDITIONAL_PARAMS,
   validateOAuthConfig 
 } from '../../config/googleOAuth';
+import { getGoogleAuthErrorMessage } from '../../services/ErrorMessageService';
 
 // Complete the auth session for better UX
 WebBrowser.maybeCompleteAuthSession();
@@ -160,70 +161,5 @@ export const useGoogleAuth = (options?: UseGoogleAuthOptions) => {
   };
 };
 
-// Helper function to get user-friendly error messages
-export const getGoogleAuthErrorMessage = (error: any): string => {
-  if (!error) return 'An unknown error occurred';
-  
-  const message = error.message || error.toString();
-  const status = error.status || error.response?.status || 0;
-  
-  // Map HTTP status codes to user-friendly messages
-  switch (status) {
-    case 400:
-      if (message.includes('invalid_grant') || message.includes('authorization_code')) {
-        return 'Authentication expired. Please try signing in again.';
-      }
-      if (message.includes('invalid_request')) {
-        return 'Invalid request. Please try again.';
-      }
-      return 'Request failed. Please check your information and try again.';
-      
-    case 401:
-      return 'Authentication failed. Please try signing in again.';
-      
-    case 403:
-      return 'Access denied. Please check your account permissions.';
-      
-    case 429:
-      return 'Too many sign-in attempts. Please wait a moment and try again.';
-      
-    case 500:
-    case 502:
-    case 503:
-    case 504:
-      return 'Server temporarily unavailable. Please try again in a moment.';
-      
-    default:
-      // Map common OAuth error messages
-      if (message.includes('cancelled')) {
-        return 'Sign-in was cancelled';
-      }
-      
-      if (message.includes('network') || message.includes('Network')) {
-        return 'Please check your internet connection and try again';
-      }
-      
-      if (message.includes('Invalid state')) {
-        return 'Security error occurred, please try again';
-      }
-      
-      if (message.includes('Invalid token') || message.includes('unauthorized')) {
-        return 'Authentication failed, please try again';
-      }
-      
-      if (message.includes('rate limit') || message.includes('too many')) {
-        return 'Too many attempts. Please wait a moment and try again.';
-      }
-      
-      if (message.includes('invalid_client')) {
-        return 'App configuration error. Please contact support.';
-      }
-      
-      if (message.includes('invalid_scope')) {
-        return 'Permission error. Please contact support.';
-      }
-      
-      // Default message
-      return 'Google sign-in failed. Please try again.';
-  }
-};
+// Export the error message function for backward compatibility
+export { getGoogleAuthErrorMessage };
